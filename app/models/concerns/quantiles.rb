@@ -28,7 +28,7 @@ module Quantiles
       t - (c0 + c1 * t + c2 * t * t) / (1.0 + d1 * t + d2 * t * t + d3 * t * t * t)
     end
 
-    def normal_distribution(p = (1 -0.05 / 2.0))
+    def normal_quantile(p = (1 - 0.05 / 2.0))
       p > 0.5 ? fi(1.0 - p) : -fi(p)
     end
 
@@ -47,14 +47,35 @@ module Quantiles
     end
     #нормальное = 1.96
 
-    def student_distribution
-      normal_quantile = normal_distribution
-      g1 = g1(normal_quantile)
-      g2 = g2(normal_quantile)
-      g3 = g3(normal_quantile)
-      g4 = g4(normal_quantile)
-      v = Datum.count - 2
-      normal_quantile + (g1 / v) + (g2 / v**2) + (g3 / v**3) + (g4 / v**4)
+    def student_quantile(v = Datum.count - 2)
+      norm_quantile = normal_quantile
+      g1 = g1(norm_quantile)
+      g2 = g2(norm_quantile)
+      g3 = g3(norm_quantile)
+      g4 = g4(norm_quantile)
+      norm_quantile + (g1 / v) + (g2 / v**2) + (g3 / v**3) + (g4 / v**4)
+    end
+
+    def fisher_quantile(v1, v2)
+      s = 1.0 / v1 + 1.0 / v2
+      d = 1.0 / v1 - 1.0 / v2
+      up = Datum.normal_quantile
+      z = up * ((s / 2.0) ** 0.5) - \
+        (1.0 / 6.0) * d * (up * up + 2) + \
+        ((s / 2.0) ** 0.5) * \
+        (
+      s * (up * up + 3.0 * up) / 24.0 +
+          (d * d) * (up ** 3 + 11 * up) / (72.0 * s)
+      ) - \
+        d * s * (up ** 3 + 9.0 * up * up + 8.0) / 120.0 + \
+        d * d * d * (3.0 * (up ** 4) + 7.0 * up * up - 16.0) / (3240.0 * s) + \
+        ((0.5 * s) ** 0.5) * \
+        (
+      s * s * (up ** 5 + 20.0 * (up ** 3) + 15 * up) / 1920.0 +
+          d ** 4 * (up ** 5 + 44.0 * (up ** 3) + 183.0 * up) / 2880.0 +
+          d ** 4 * (9.0 * (up ** 5) - 284.0 * (up ** 3) - 1513.0 * up) / (155520.0 * s * s)
+      )
+      Math.exp(2 * z)
     end
 
 end

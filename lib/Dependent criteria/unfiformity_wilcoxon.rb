@@ -1,5 +1,5 @@
-class MannWhitneyElement
-  attr_reader :value
+class UnfiformityWilcoxonElement
+  attr_reader :value, :label
   attr_accessor :index, :rank
   def initialize(value, label)
     @value = value
@@ -7,13 +7,13 @@ class MannWhitneyElement
   end
 end
 
-class MannWhitney
+class UnfiformityWilcoxon
   attr_reader :sample, :nx, :ny
   def initialize(x, y)
     @nx = x.length
     @ny = y.length
-    @sample << x.map { |el| MannWhitneyElement.new(el, :x) }
-    @sample << y.map { |el| MannWhitneyElement.new(el, :y) }
+    @sample = x.map { |el| UnfiformityWilcoxonElement.new(el, :x) }
+    @sample += y.map { |el| UnfiformityWilcoxonElement.new(el, :y) }
     index!
     rank!
   end
@@ -44,17 +44,17 @@ class MannWhitney
     x.sum(&:rank)
   end
 
-  def e
-    nx / 2.0 *(nx + ny +1)
-  end
-
   def d
     (nx * ny) / 12.0 * (nx + ny + 1)
   end
 
+  def e
+    nx / 2.0 * (nx + ny + 1)
+  end
+
   def conclusion()
     normal_quantile = Datum.normal_quantile
-    u = statistic
+    u = statistic.abs
     u > normal_quantile ? 'Функції розподілу зсунуті одна відносно іншої' : 'Зсуву у функціях розподілу немає'
   end
 

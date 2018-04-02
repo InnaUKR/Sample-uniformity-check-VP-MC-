@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="Rails uniformity_check: test" uuid="dbfd456e-0af5-4db7-93eb-2b58bbae3fa7">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql:unfiformity_check_test</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Rails uniformity_check: production" uuid="f3e46c94-3083-4306-9b47-c209e719654b">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql:unfiformity_check_production</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Rails uniformity_check: development" uuid="c883b19d-8d58-40d4-86ac-317b57dd24b6">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql:unfiformity_check_development</jdbc-url>
+    </data-source>
+  </component>
+</project>

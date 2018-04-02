@@ -1,0 +1,144 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Data</h1>
+<br>
+<%= link_to 'Back', new_datum_path %>
+<br>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr class="info">
+      <th></th>
+      <th></th>
+      <th>Значення</th>
+      <th>Середньоквадратичне відхилення</th>
+      <th>Довірчий інтервал</th>
+    </tr>
+  </thead>
+
+  <tr>
+    <td rowspan="2">Середнє арифметичне</td>
+    <td>x</td>
+    <td><%= @average_x %></td>
+    <td><%= @average_estimation_x  %></td>
+    <td><%= @average_interval_x %></td>
+  </tr>
+
+  <tr>
+    <td>y</td>
+    <td><%= @average_y %></td>
+    <td><%= @average_estimation_y %></td>
+    <td><%= @average_interval_y %></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2">Медіана</td>
+    <td>x</td>
+    <td><%= @median_x  %></td>
+    <td>-</td>
+    <td>-</td>
+  </tr>
+
+  <tr>
+    <td>y</td>
+    <td><%= @median_y  %></td>
+    <td>-</td>
+    <td>-</td>
+  </tr>
+
+  <tr>
+    <td rowspan="2">Середньоквадратичне</td>
+    <td>x</td>
+    <td><%= @medium_square_x  %></td>
+    <td><%= @medium_square_x %></td>
+    <td><%= @medium_square_interval_x %></td>
+  </tr>
+
+  <tr>
+    <td>y</td>
+    <td><%= @medium_square_y %></td>
+    <td><%= @medium_square_y %></td>
+    <td><%= @medium_square_interval_y %></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2">Коефіцієнт асиметрії</td>
+    <td>x</td>
+    <td><%= @asymmetry_x %></td>
+    <td><%= @asymmetry_estimation %></td>
+    <td><%= @asymmetry_interval_x %></td>
+  </tr>
+
+  <tr>
+    <td>y</td>
+    <td><%= @asymmetry_y %></td>
+    <td><%= @asymmetry_estimation %></td>
+    <td><%= @asymmetry_interval_y %></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2">Коефіцієнт ексцесу</td>
+    <td>x</td>
+    <td><%= @excess_x %></td>
+    <td><%= @excess_estimation %></td>
+    <td><%= @excess_interval_x %> </td>
+  </tr>
+
+  <tr>
+    <td>y</td>
+    <td><%= @excess_y %></td>
+    <td><%= @excess_estimation %></td>
+    <td><%= @excess_interval_y %> </td>
+  </tr>
+
+  <tr>
+    <td rowspan="2">Коефіцієнт контрексцесу</td>
+    <td>x</td>
+    <td><%= @kontrekstsess_x %></td>
+    <td><%= @kontrekstsess_estimation_x %></td>
+    <td><%= @kontrexcess_interval_x %> </td>
+  </tr>
+
+  <tr>
+    <td>y</td>
+    <td><%= @kontrekstsess_y %></td>
+    <td><%= @kontrekstsess_estimation_y %></td>
+    <td><%= @kontrexcess_interval_y %> </td>
+  </tr>
+
+  <tr>
+    <td rowspan="2">Коефіцієнт варіації</td>
+    <td>x</td>
+    <td><%= @pirson_x %></td>
+    <td><%= @pirson_estimation_x %></td>
+    <td><%= @pirson_interval_x %> </td>
+  </tr>
+
+  <tr>
+    <td>y</td>
+    <td><%= @pirson_y %></td>
+    <td><%= @pirson_estimation_y %></td>
+    <td><%= @pirson_interval_y %> </td>
+  </tr>
+
+</table>
+
+<br>
+<ul>
+  <li>
+    <%= link_to 'Критерій перевірки збігу середніх для двох залежних вибірок', data_show_average_path%>
+  </li>
+  <li>
+    <%= link_to 'Критерій перевірки збігу дисперсій', data_show_dispersion_path%>
+  </li>
+  <li>
+    <%= link_to 'Критерій знакових рангів Вілкоксона для двох залежних вибірок', data_show_wilcoxon_path%>
+  </li>
+  <li>
+    <%= link_to 'Критерій перевірки збігу середніх двох незалежних вибірок', data_show_unfiformity_average_path%>
+  </li>
+  <li>
+    <%= link_to 'Ранговий критерій Вілкоксона для двох залежних вибірок', data_show_unfiformity_wilcoxon_path%>
+  </li>
+
+</ul>

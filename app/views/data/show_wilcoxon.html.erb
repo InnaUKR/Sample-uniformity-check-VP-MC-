@@ -7,34 +7,38 @@
     <thead>
     <tr class="info">
       <th>x</th>
-<th>y</th>
+      <th>y</th>
       <th>z = x - y</th>
-<th>z − Z</th>
-      <th>(z − Z)^2</th>
+      <th>α</th>
+      <th>|z|</th>
+      <th>r – ранги для|z|</th>
+      <th>α⋅r</th>
 </tr>
     </thead>
 
 <tbody>
 <% @x.each_with_index do |x_i, i|  %>
       <tr>
-<td><%= x_i %></td>
+        <td><%= x_i %></td>
         <td><%= @y[i] %></td>
         <td><%= @z[i]  %></td>
-<td><%= @subtracts[i]%></td>
-        <td><%= @sqrt_subtracts[i]%></td>
+        <td><%= @a[i]%></td>
+        <td><%= @abs_z[i]%></td>
+        <td><%= @rank[i] %></td>
+        <td><%= @multiple_a_rank[i] %></td>
       </tr>
 <% end %>
 </tbody>
   </table>
 
 <div class="info">
-<p>Z = <%= @avz %> - z среднє</p>
-    <p>S(z-Z)^2 = <%= @medium_square %> - середньоквадратичне відхилення</p>
-    <p>t = <%= @statistic %> - статистика</p>
-    <p>T = <%= @student_quantile %> - квантиль розподілу Стьюдента</p>
-    <h3>
-      Висновок:
-      <%= @conclusion ? 'Cередні двох вибірок збігаються (t <= T)': 'Cередні двох вибірок  не збігаються (t > T)' %>
-</h3>
+  <p>T = <%= @statistic %> - статистика</p>
+  <p>E{T} <%= @excess %> - коефіцієнт ексцесу</p>
+  <p>D{T} = <%= @dispersion%> - дисперсія</p>
+  <p>A = <%= @bunch.to_a %> </p>
+  <p>u = <%= @standard_statistic %> - стандартизована статистика</p>
+  <h3>
+    Висновок: <%= @conclusion %>
+  </h3>
   </div>
 </div>
