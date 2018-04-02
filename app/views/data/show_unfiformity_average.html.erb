@@ -1,0 +1,60 @@
+<h1>Критерії перевірки збігу середніх для двох незалежних вибірок</h1>
+<br>
+<%= link_to 'Back', data_path %>
+<br>
+<div class="info">
+  <p>X = <%= @avx %> - x среднє</p>
+  <p>Y = <%= @avy %> - y среднє</p>
+  <p>S(x-X)^2 = <%= @dispersion_x %> - дисперсія х</p>
+  <p>S(y-Y)^2 = <%= @dispersion_y %> - дисперсія y</p>
+  <p>f = <%= @statistic %> - статистика</p>
+  <p>F = <%= @student_quantile %> - квантиль розподілу Стьюдента</p>
+  <h3>
+    Висновок:
+    <%= @conclusion ? 'Дисперсії двох вибірок збігаються(f <= F)': 'дисперсії двох вибірок НЕ збігаються(f > F)' %>
+  </h3>
+</div>
+
+<div class="container">
+  <table class="table table-bordered table-striped table-left">
+    <thead>
+    <tr class="info">
+      <th>x</th>
+      <th>x- X</th>
+      <th>(x − X)^2</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @x.each_with_index do |x_i, i|  %>
+      <tr>
+        <td><%= x_i %></td>
+        <td><%= @subtract_average_x[i] %></td>
+        <td><%= @subtract_average_x_sqrt[i]  %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <table class="table table-bordered table-striped table-left">
+    <thead>
+    <tr class="info">
+      <th>y</th>
+      <th>y- Y</th>
+      <th>(y − Y)^2</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @y.each_with_index do |y, i|  %>
+      <tr>
+        <td><%= y %></td>
+        <td><%= @subtract_average_y[i] %></td>
+        <td><%= @subtract_average_y_sqrt[i]  %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+
+</div>
